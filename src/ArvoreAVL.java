@@ -43,4 +43,24 @@ public class ArvoreAVL {
     }
 
 
+    public void imprimirEmOrdem() {
+        if (this.raiz == null) { // verifica se árvore está vazia
+            System.out.println("Nenhum produto adicionado no estoque !");
+        } else {
+            // se árvore não está vaiz, chama o método recursivo privado que percorre sua estrutura
+            emOrdemRecursivo(this.raiz);
+        }
+
+    }
+
+    //Chamada privada que recebe a raiz da árvore como ponto inicial
+    private void emOrdemRecursivo(Produtos atual) {
+        if (atual != null) { // Se a raiz não for nulo o programa é iniciado
+            emOrdemRecursivo(atual.getEsquerda()); // Passa o filho a esquerda do antigo atual como novo atual, empilhando os produtos a esquerda de forma que o maior fica por baixo e o menor fica cima
+            System.out.println(atual.toString()); // Começa a imprimir os produtos empilhados pelos método de recursão
+            emOrdemRecursivo(atual.getDireita()); // Passa o filho a diteita do antigo atual como novo atual, iniciando a verificação se algo a esquerda, imprimindo, verificando a deireita e imprimindo
+        }
+    }
+
+
 }
