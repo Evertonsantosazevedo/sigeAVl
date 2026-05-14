@@ -3,34 +3,32 @@ public class ArvoreAVL {
     private Produtos raiz;
 
     //Método que será chamado no main
-    public void buscar(int codigo) {
-        buscarRecursivo(this.raiz, codigo);
+    public Produtos buscar(int codigo) {
+        return buscarRecursivo(this.raiz, codigo);
     }
 
     //Método que faz a busca na árvore
-    private void buscarRecursivo(Produtos atual, int codigo) {
-
+    private Produtos buscarRecursivo(Produtos atual, int codigo) {
         //Verifica se é null indicando que ou árvore é vazia se for a a raíz, ou que chegou ao final sem encontrar o produto
         if (atual == null) {
-            System.out.println("Produto não econtrado!");
+            return null;
         } else if (codigo == atual.getCodigo()) { // Verifica se e código e o código do produto são iguais
-            System.out.println(atual.toString());
+            return atual;
         } else if (codigo < atual.getCodigo()) { // Se o código passado for menor que o código do produto atual, a busca segue para a esquerda
             //É chamado de maneira recursiva o buscar, que agora segue com o filho a esquerda do antigo atual
-            buscarRecursivo(atual.getEsquerda(), codigo);
+            return buscarRecursivo(atual.getEsquerda(), codigo);
         } else { // Se o código passado for maior que o código do produto atual, a busca segue para a direita
             //É chamado de maneira recursiva o buscar, que agora segue com o filho a direita do antigo atual
-            buscarRecursivo(atual.getDireita(), codigo);
+            return buscarRecursivo(atual.getDireita(), codigo);
         }
     }
 
     //Recebe o código como chave para a busca
-    public void buscarWhile(int codigo) {
+    public Produtos buscarWhile(int codigo) {
         Produtos atual = this.raiz; // Inicia a busca a partir da raiz da árvore
         while (atual != null) { // verifica se o valor não é nulo antes de continuar com as buscas, se a raiz for nulla a árvore está vazia
             if (codigo == atual.getCodigo()) { // Verifica se código passado corresponde ao do produto atual
-                System.out.println(atual.toString()); // Exibe o produto
-                return; // Como o produto foi encontrado saímos do método
+                return atual;
             } else if (codigo < atual.getCodigo()) { // No caso do código passado ser menor que o do produto atual
                 atual = atual.getEsquerda(); // Passamos como o filho à esquerda do produto atual, como o novo atual
             } else { // No caso do código passado ser maior que o do produto atual
@@ -39,7 +37,7 @@ public class ArvoreAVL {
 
         }
         //Caso o while termine e o produto não seja encontrado
-        System.out.println("Produto não encontrado !");
+        return null;
     }
 
 
@@ -60,6 +58,19 @@ public class ArvoreAVL {
             System.out.println(atual.toString()); // Começa a imprimir os produtos empilhados pelos método de recursão
             emOrdemRecursivo(atual.getDireita()); // Passa o filho a diteita do antigo atual como novo atual, iniciando a verificação se algo a esquerda, imprimindo, verificando a deireita e imprimindo
         }
+    }
+
+    public Produtos aumentarQuantidade(int codigo, int quantidade) {
+        if (quantidade > 0){ // verifca se a quantidade passada é válida
+            Produtos produto = buscar(codigo); // busca o produto pelo código passado
+            if (produto != null) { // verifica se o produto existe
+                produto.setEstoque(produto.getEstoque() + quantidade); // aumenta sua quantidade somando o que existe com a que foi passada
+                return produto; // retorna o produto com a quantidade modificada
+            } else {
+                return null; // retorna nulo caso o produto não exista
+            }
+        }
+        return null; // retorna nulo se a quantidade for <= 0
     }
 
 
