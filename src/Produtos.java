@@ -2,19 +2,20 @@ public class Produtos {
     private Integer codigo;
     private String nome;
     private String categoria;
-    private Integer quantidadeEmEstoque;
+    private Integer estoque;
     private Double preco;
     private Produtos esquerda;
     private Produtos direita;
+    private Integer altura;
 
     public Produtos() {
     }
 
-    public Produtos(Integer codigo, String nome, String categoria, Integer quantidadeEmEstoque, Double preco) {
+    public Produtos(Integer codigo, String nome, String categoria, Integer estoque, Double preco) {
         this.codigo = codigo;
         this.nome = nome;
         this.categoria = categoria;
-        this.quantidadeEmEstoque = quantidadeEmEstoque;
+        this.estoque = estoque;
         this.preco = preco;
         this.direita = null;
         this.esquerda = null;
@@ -44,12 +45,12 @@ public class Produtos {
         this.categoria = categoria;
     }
 
-    public Integer getQuantidadeEmEstoque() {
-        return quantidadeEmEstoque;
+    public Integer getEstoque() {
+        return estoque;
     }
 
-    public void setQuantidadeEmEstoque(Integer quantidadeEmEstoque) {
-        this.quantidadeEmEstoque = quantidadeEmEstoque;
+    public void setEstoque(Integer estoque) {
+        this.estoque = estoque;
     }
 
     public Double getPreco() {
@@ -74,5 +75,19 @@ public class Produtos {
 
     public void setDireita(Produtos direita) {
         this.direita = direita;
+    }
+
+    public Integer getAltura() {
+        return altura;
+    }
+
+    public void setAltura(Integer altura) {
+        this.altura = altura;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("\n\nResumo do produto\nCódigo: %d\nNome: %s" +
+                "\nCategoria: %s\nEstoque inicial: %d unidades\nPreço: %.2f",codigo,nome,categoria,estoque,preco);
     }
 }
