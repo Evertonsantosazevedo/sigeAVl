@@ -1,14 +1,14 @@
 public class ArvoreAVL {
 
-    private Produtos raiz;
+    private Produto raiz;
 
     //Método que será chamado no main
-    public Produtos buscar(int codigo) {
+    public Produto buscar(int codigo) {
         return buscarRecursivo(this.raiz, codigo);
     }
 
     //Método que faz a busca na árvore
-    private Produtos buscarRecursivo(Produtos atual, int codigo) {
+    private Produto buscarRecursivo(Produto atual, int codigo) {
         //Verifica se é null indicando que ou árvore é vazia se for a a raíz, ou que chegou ao final sem encontrar o produto
         if (atual == null) {
             return null;
@@ -24,8 +24,8 @@ public class ArvoreAVL {
     }
 
     //Recebe o código como chave para a busca
-    public Produtos buscarWhile(int codigo) {
-        Produtos atual = this.raiz; // Inicia a busca a partir da raiz da árvore
+    public Produto buscarWhile(int codigo) {
+        Produto atual = this.raiz; // Inicia a busca a partir da raiz da árvore
         while (atual != null) { // verifica se o valor não é nulo antes de continuar com as buscas, se a raiz for nulla a árvore está vazia
             if (codigo == atual.getCodigo()) { // Verifica se código passado corresponde ao do produto atual
                 return atual;
@@ -52,7 +52,7 @@ public class ArvoreAVL {
     }
 
     //Chamada privada que recebe a raiz da árvore como ponto inicial
-    private void emOrdemRecursivo(Produtos atual) {
+    private void emOrdemRecursivo(Produto atual) {
         if (atual != null) { // Se a raiz não for nulo o programa é iniciado
             emOrdemRecursivo(atual.getEsquerda()); // Passa o filho a esquerda do antigo atual como novo atual, empilhando os produtos a esquerda de forma que o maior fica por baixo e o menor fica cima
             System.out.println(atual.toString()); // Começa a imprimir os produtos empilhados pelos método de recursão
@@ -60,11 +60,11 @@ public class ArvoreAVL {
         }
     }
 
-    public Produtos aumentarQuantidade(int codigo, int quantidade) {
+    public Produto aumentarQuantidade(int codigo, int quantidade) {
         if (quantidade > 0){ // verifca se a quantidade passada é válida
-            Produtos produto = buscar(codigo); // busca o produto pelo código passado
+            Produto produto = buscar(codigo); // busca o produto pelo código passado
             if (produto != null) { // verifica se o produto existe
-                produto.setEstoque(produto.getEstoque() + quantidade); // aumenta sua quantidade somando o que existe com a que foi passada
+                produto.setQuantidadeEmEstoque(produto.getQuantidadeEmEstoque() + quantidade); // aumenta sua quantidade somando o que existe com a que foi passada
                 return produto; // retorna o produto com a quantidade modificada
             } else {
                 return null; // retorna nulo caso o produto não exista

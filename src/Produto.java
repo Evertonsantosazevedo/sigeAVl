@@ -1,24 +1,25 @@
-public class Produtos {
+public class Produto {
     private Integer codigo;
     private String nome;
     private String categoria;
-    private Integer estoque;
+    private Integer quantidadeEmEstoque;
     private Double preco;
-    private Produtos esquerda;
-    private Produtos direita;
+    private Produto esquerda;
+    private Produto direita;
     private Integer altura;
 
-    public Produtos() {
+    public Produto() {
     }
 
-    public Produtos(Integer codigo, String nome, String categoria, Integer estoque, Double preco) {
+    public Produto(Integer codigo, String nome, String categoria, Integer quantidadeEmEstoque, Double preco) {
         this.codigo = codigo;
         this.nome = nome;
         this.categoria = categoria;
-        this.estoque = estoque;
+        this.quantidadeEmEstoque = quantidadeEmEstoque;
         this.preco = preco;
         this.direita = null;
         this.esquerda = null;
+        this.altura = 1;
     }
 
     public Integer getCodigo() {
@@ -45,12 +46,12 @@ public class Produtos {
         this.categoria = categoria;
     }
 
-    public Integer getEstoque() {
-        return estoque;
+    public Integer getQuantidadeEmEstoque() {
+        return quantidadeEmEstoque;
     }
 
-    public void setEstoque(Integer estoque) {
-        this.estoque = estoque;
+    public void setQuantidadeEmEstoque(Integer quantidadeEmEstoque) {
+        this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
 
     public Double getPreco() {
@@ -61,19 +62,19 @@ public class Produtos {
         this.preco = preco;
     }
 
-    public Produtos getEsquerda() {
+    public Produto getEsquerda() {
         return esquerda;
     }
 
-    public void setEsquerda(Produtos esquerda) {
+    public void setEsquerda(Produto esquerda) {
         this.esquerda = esquerda;
     }
 
-    public Produtos getDireita() {
+    public Produto getDireita() {
         return direita;
     }
 
-    public void setDireita(Produtos direita) {
+    public void setDireita(Produto direita) {
         this.direita = direita;
     }
 
@@ -87,7 +88,13 @@ public class Produtos {
 
     @Override
     public String toString() {
-        return String.format("\n\nResumo do produto\nCódigo: %d\nNome: %s" +
-                "\nCategoria: %s\nEstoque inicial: %d unidades\nPreço: %.2f",codigo,nome,categoria,estoque,preco);
+        return String.format(
+                "%6d %-30s %-20s %7d %8.2f",
+                codigo,
+                nome,
+                categoria,
+                quantidadeEmEstoque,
+                preco
+        );
     }
 }
